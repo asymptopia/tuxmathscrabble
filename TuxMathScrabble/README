@@ -1,0 +1,35 @@
+===========================================
+README-TuxMathScrabble-0.7.1
+December 27, 2009
+===========================================
+
+Greetings! Thanks for using TuxMathScrabble. Here are a few notes to help you get started.
+
+Installation: Please see the INSTALL file. The Windows .exe contains everything in a local distribution with a gui installer.  The Linux/Mac version you will need to install PyGame and wxPython first.
+
+Changes and new additions for this version: Please see the CHANGES file.
+
+Computer Player solver speed: Recently variables were added to the global_config (thus they appear in the admin control panel) which offer the ability to toggle-off some (or all) of the various sets of combinations that get considered when the computer player takes a turn.  This was implemented after the painful delays experienced while playing Level=4 on a 500 MHz windows machine.  Ouch!
+
+Animation Speed: If the animations are running too slowly then enter the admin control panel and reduce the parameter TSLEEP_ANIMATION.  
+
+Exiting: The escape key is used to exit the application.  If you are in screensaver mode (Mode=0) then the escape key will completely exit the application.  If you are playing (Mode=1), then the escape key will take you back to Mode=0.  On Windows, when the app exits you will see an error message; just ignore, it's harmless, and is due to a deprecated library in the wxPython toolkit.  
+
+Help Menu: The F9 key shows a help menu of the handful of keyboard options.
+
+Changing parameters: Use the tooltips (Linux only) which popup when you hover your mouse over the standard "default" button associated with each parameter visible in the admin control panel.
+
+Screenshots: The F11 key puts a timestamped screenshot in your HOME directory.
+
+Fullscreen: On Linux the F12 key toggles the Fullscreen mode.  This is not supported in Windows because PyGame does not support Fullscreen on Windows. You can configure the overall window size via the Admin control panel (WIN_W,WIN_H).
+
+Interpreting character actions: When a computer player is taking a turn, they first construct various sets of possibilities, the fanciest sets (ie quadruple replacement) being considered first. Between consideration of successive sets, the computer player performs a little "thinking maneuver", such as a scratch, look at the tiles, or nod.  On the 1.7 GHz machine used for development the time intervals between sets are tolerable.  On a 500 MHz machine the delay will seem too long.  The point is that the user can guage progress through the (sometimes long) list of options by noting the number of "thinking maneuvers" which have occured.
+
+TuxMathScrabble is under continuous development. Improvements are made as time permits, and there is no schedule.  Please check the  main website for new updates and more software.
+
+If you have questions, suggestions, feature requests, etc, please feel free to contact the author at: ccosse@gmail.com.
+
+Enjoy the software,
+
+Charles B. Cosse (Author)
+

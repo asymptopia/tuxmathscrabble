@@ -1,0 +1,88 @@
+==========================================
+
+APPLICATION INSTALLATION INSTRUCTIONS
+
+==========================================
+
+Linux:
+
+Dependencies:
+	Python, PyGame, SDL 
+	
+Optional:	
+	wxPython
+
+Local Installation:
+	unzip package to home directory
+	cd into home directory
+	run: "python ./tuxmathscrabble.py"
+	
+	or, if wx installed:
+	run: "python ./tuxmathscrabble.py -wx"
+
+System-wide Installation:
+	chmod +x setup.py
+	./setup.py
+	/usr/local/bin/tuxmathscrabble
+	or
+	/usr/local/bin/tuxmathscrabble -wx
+
+Uninstall:
+	chmod +x setup.py
+	./setup.py uninstall
+
+==========================================
+Mac:
+
+Note: 
+	Mac users can just run from the 
+	local installation directory without
+	copying files to the python sitepkgs
+	directory.
+
+Dependencies:
+	Python, PyGame, SDL
+	
+Optional:
+	wxGTK-2.8.* and wxPython
+
+Installation Procedure:
+	unzip the package
+	cd into package directory
+	python ./tuxmathscrabble.py
+	
+==========================================
+Windows:
+
+Note: 
+	Windows users can just run from the 
+	local installation directory without
+	copying files to the python sitepkgs
+	directory.
+
+Dependencies:
+	Python, PyGame, SDL
+	
+Optional:
+	wxGTK-2.8.* and wxPython
+
+Installation Procedure:
+	unzip the package
+	cd into package directory
+	python ./tuxmathscrabble.py
+
+==========================================
+Windows XP (older .exe installer):
+
+Dependencies: None (self-contained)
+
+Installation Procedure:
+	Double-click setup.exe and accept
+	all defaults. Option to place icon
+	on desktop, as well as auto launch
+	at end of installation.
+
+Nothing in this release changed for Windows,
+as the Windows version has WxPython bundled
+in automatically already.
+
