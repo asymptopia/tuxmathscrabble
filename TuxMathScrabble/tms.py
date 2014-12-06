@@ -570,7 +570,8 @@ class TuxMathScrabble:
 					if tile:
 						board_spot.take_guest(tile,1)
 						board_spot.lock()
-						self.AnimatedTiles[board_spot.getMN()[0]][board_spot.getMN()[1]].queue('celebrate')
+						if self.global_config['TILE_ANIMATIONS']['value']==1:
+							self.AnimatedTiles[board_spot.getMN()[0]][board_spot.getMN()[1]].queue('celebrate')
 						
 		self.players[self.player_idx].actor.queue('go_back')
 		self.players[self.player_idx].actor.queue('thinking')

@@ -726,6 +726,15 @@
 		'value':1,
 		'wtype':'wx.CheckBox',
 	},
+	'TILE_ANIMATIONS':{
+		'default':0,
+		'descr':'',
+		'dtype':'int',
+		'showme':1,
+		'tooltip':'Whether to show animated tiles.',
+		'value':0,
+		'wtype':'wx.CheckBox',
+	},
 	'TILE_ANIM_STEPSIZE':{
 		'default':10,
 		'descr':'',
