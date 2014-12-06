@@ -29,11 +29,8 @@ class TuxMathScrabbleAppWX(wx.App):
 		mode=0
 		level=4
 		use_default_level=True
-		print "okay"
 		while True:
-			print "calling prog"
 			prog=TuxMathScrabble(mode,level,use_default_level,True)
-			print "calling prog.run"
 			mode,level=prog.run()
 			
 			

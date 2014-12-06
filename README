@@ -1,20 +1,26 @@
 ===========================================
-CHANGES TuxMathScrabble-0.7.2
+CHANGES-TuxMathScrabble-0.7.7
+December 6, 2014
 ===========================================
-January 12, 2010
 
-1.	If installed (installation only applies to Linux now, Win/Mac run from within package directory),
-	then .tms_config_master located at /var/games/TuxMathScrabble/.tms_config_master and copied -> $HOME/.tms_config
-	at user's first run.  Previously ran into permission problems if users try to change settings via admin.
-	Now every user takes their own copy of the config file and saves in their $HOME.
-	
+1. Fix support for wx2.8 and wx3.0
+2. Theme similar to new HTML5 online version
+3. Quit button added to main window
+
+NOTE: .tms_config_master gets copied to $HOME/.tms_config on first run.
+There are many config variables in .tms_config not shown in wxadmin gui.
+These can be edited by hand if necessary.
+
+NOTE2: Please note that there is a new web version of TuxMathScrabble:
+http://www.asymptopia.org/tuxmathscrabble/play
+
+
 ===========================================
 README-TuxMathScrabble-0.7.1
 December 27, 2009
 ===========================================
 
 Greetings! Thanks for using TuxMathScrabble. Here are a few notes to help you get started.
-
 
 Installation: Please see the INSTALL file. The Windows .exe contains everything in a local distribution with a gui installer.  The Linux/Mac version you will need to install PyGame and wxPython first.
 
