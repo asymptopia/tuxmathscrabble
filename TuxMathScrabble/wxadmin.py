@@ -5,6 +5,8 @@
 
     Website         :www.asymptopia.org
 
+    Support         :www.asymptopia.org/forum
+
     Author          :Charles B. Cosse
 
     Email           :ccosse@asymptopia.org
@@ -141,7 +143,7 @@ class wxAdmin(wx.Dialog):
 		
 		obj_keys=self.global_config.keys()
 		obj_keys.sort()
-		ypos=30
+		ypos=40
 		
 		for idx in range(len(obj_keys)):
 			obj_dict=self.global_config[obj_keys[idx]]
