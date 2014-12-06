@@ -159,13 +159,13 @@ class TuxMathScrabble:
 		self.env.USE_WX=False
 		if USE_WX:
 			self.env.USE_WX=USE_WX
-			print "self.env.USE_WX=true"
+			if DEBUG:print "self.env.USE_WX=true"
 			
 		self.STOP_RUNNING=0
 		self.CANNOT_MOVE_COUNT=0
 		
 		if self.env.OS=='win':
-			print "OS=win"
+			if DEBUG:print "OS=win"
 			os.environ['SDL_VIDEODRIVER'] = 'windib'
 		
 		if DEBUG:print "calling display.init"
@@ -208,6 +208,11 @@ class TuxMathScrabble:
 				self.MODE=1
 				return 1
 				
+			#QUIT BUTTON:
+			if self.quit_button.rect.collidepoint(pygame.mouse.get_pos()):
+				self.STOP_RUNNING=0
+				sys.exit()
+
 			#ADMIN BUTTON:
 			elif self.admin_button.rect.collidepoint(pygame.mouse.get_pos()):
 				self.AMFULLSCREEN=0
@@ -895,25 +900,25 @@ class TuxMathScrabble:
 		y0=10
 		vspc=5
 		self.tuxscorestring="Tux:%03d"%self.players[0].score
-		surf=self.hudfont.render(self.tuxscorestring,1,self.global_config['COLOR_BG_PLAYER0_TILE']['value'],self.global_config['COLOR_BG']['value'])
+		surf=self.hudfont.render(self.tuxscorestring,1,self.global_config['COLOR_FG_PLAYER0_TILE']['value'],self.global_config['COLOR_BG']['value'])
 		surf.set_colorkey(self.global_config['COLOR_BG']['value'])
 		self.screen.blit(surf,(20,y0))
 		y0+=surf.get_height()+vspc
 		
 		self.playerscorestring="You:%03d"%self.players[1].score
-		surf=self.hudfont.render(self.playerscorestring,1,self.global_config['COLOR_BG_PLAYER1_TILE']['value'],self.global_config['COLOR_BG']['value'])
+		surf=self.hudfont.render(self.playerscorestring,1,self.global_config['COLOR_FG_PLAYER0_TILE']['value'],self.global_config['COLOR_BG']['value'])
 		surf.set_colorkey(self.global_config['COLOR_BG']['value'])
 		self.screen.blit(surf,(20,y0))
 		y0+=surf.get_height()+vspc
 
 		self.levelstring="Level:%d"%self.LEVEL
-		surf=self.hudfont.render(self.levelstring,1,self.global_config['COLOR_BG_PLAYER1_TILE']['value'],self.global_config['COLOR_BG']['value'])
+		surf=self.hudfont.render(self.levelstring,1,self.global_config['COLOR_FG_PLAYER0_TILE']['value'],self.global_config['COLOR_BG']['value'])
 		surf.set_colorkey(self.global_config['COLOR_BG']['value'])
 		self.screen.blit(surf,(20,y0))
 		y0+=surf.get_height()+vspc
 
 		self.helpstring="Help:F9"
-		surf=self.hudfont.render(self.helpstring,1,self.global_config['COLOR_BG_PLAYER1_TILE']['value'],self.global_config['COLOR_BG']['value'])
+		surf=self.hudfont.render(self.helpstring,1,self.global_config['COLOR_FG_PLAYER0_TILE']['value'],self.global_config['COLOR_BG']['value'])
 		surf.set_colorkey(self.global_config['COLOR_BG']['value'])
 		self.screen.blit(surf,(20,y0))
 		y0+=surf.get_height()+vspc
@@ -1175,6 +1180,7 @@ class TuxMathScrabble:
 		self.adminbuttongroup=pygame.sprite.Group()#[self.admin_button]
 		self.adminbuttons=pygame.sprite.RenderPlain(self.adminbuttongroup)
 		
+		
 		#PLAYBUTTONS
 		self.demo_button=Button(self.global_config,'Demo',self.bfont)
 		self.demo_button.rect.center=(#NOTE: THIS IS *CENTER*
@@ -1189,7 +1195,15 @@ class TuxMathScrabble:
 			self.global_config['WIN_W']['value']-self.play_button.get_width()/2-reveal,
 			H0+2.4*self.play_button.get_height()#self.global_config['WIN_H']['value']-3*self.play_button.get_height()/2-reveal-H0
 		)
-		self.playbuttongroup=pygame.sprite.Group([self.demo_button,self.play_button,self.admin_button])
+
+		#QUITBUTTON
+		self.quit_button=Button(self.global_config,'Quit',self.bfont)
+		self.quit_button.rect.center=(#NOTE: THIS IS *CENTER*
+			self.global_config['WIN_W']['value']-self.quit_button.get_width()/2-reveal,
+			H0+3.6*self.play_button.get_height()#self.global_config['WIN_H']['value']-self.admin_button.get_height()/2-H0
+		)
+
+		self.playbuttongroup=pygame.sprite.Group([self.quit_button,self.demo_button,self.play_button,self.admin_button])
 		self.playbuttons=pygame.sprite.RenderPlain(self.playbuttongroup)
 		
 		self.okay_button=RoundButton(self.global_config,'Okay',self.bfont)
@@ -1384,8 +1398,8 @@ class TuxMathScrabble:
 			u'Millie and Jordan',
 			u'* And * Kids * Everywhere *',
 			u'',
-			u'TuxMathScrabble Version 0.7.2',
-			u'January 12, 2010',
+			u'TuxMathScrabble Version 0.7.7',
+			u'December 6, 2014',
 			u'',
 			u'Author:Charles B. Coss'+u'\xe9',
 			u'Contact:ccosse@asymptopia.org', 
@@ -1759,7 +1773,7 @@ class TuxMathScrabble:
 			'',
 			'**********************************************************',
 			'*                                                        *',
-			'*   You are using version 0.7.3 from January 18, 2010    *',
+			'*   You are using version 0.7.7 from December 6, 2014    *',
 			'*                                                        *',
 			'*                http://www.asymptopia.org               *',
 			'*                                                        *',

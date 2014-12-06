@@ -25,7 +25,7 @@ class RoundButton(pygame.sprite.Sprite):
 		pygame.sprite.Sprite.__init__(self)
 		
 		#bfont:
-		msg_surface=bfont.render(msg,1,gc['COLOR_BG_PLAYER1_TILE']['value'],gc['COLOR_FG_PLAYER1_TILE']['value'])
+		msg_surface=bfont.render(msg,1,gc['COLOR_FG_PLAYER1_TILE']['value'],gc['COLOR_BG_PLAYER1_TILE']['value'])
 		
 		#self.width=gc['GAME_BUTTON_W']['value']
 		#self.height=gc['GAME_BUTTON_H']['value']
@@ -39,7 +39,7 @@ class RoundButton(pygame.sprite.Sprite):
 		pygame.draw.circle(self.image,(0,0,0),self.image.get_rect().center,int(self.width/2),2)
 		pygame.draw.circle(self.image,(255,255,255),self.image.get_rect().center,int(self.width/2-2),2)
 		pygame.draw.circle(self.image,(0,0,0),self.image.get_rect().center,int(self.width/2-4),2)
-		pygame.draw.ellipse(self.image,gc['COLOR_FG_PLAYER1_TILE']['value'],self.image.get_rect().inflate(-12,-12),0)
+		pygame.draw.ellipse(self.image,gc['COLOR_BG_PLAYER1_TILE']['value'],self.image.get_rect().inflate(-12,-12),0)
 		
 		#bfont:
 		tlcx=self.width/2-msg_surface.get_width()/2

@@ -1,4 +1,21 @@
 ===========================================
+CHANGES-TuxMathScrabble-0.7.7
+December 6, 2014
+===========================================
+
+1. Fix support for wx2.8 and wx3.0
+2. Theme similar to new HTML5 online version
+3. Quit button added to main window
+
+NOTE: .tms_config_master gets copied to $HOME/.tms_config on first run.
+There are many config variables in .tms_config not shown in wxadmin gui.
+These can be edited by hand if necessary.
+
+NOTE2: Please note that there is a new web version of TuxMathScrabble:
+http://www.asymptopia.org/tuxmathscrabble/play
+
+
+===========================================
 README-TuxMathScrabble-0.7.1
 December 27, 2009
 ===========================================

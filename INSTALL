@@ -7,10 +7,10 @@ APPLICATION INSTALLATION INSTRUCTIONS
 Linux:
 
 Dependencies:
-	Python, PyGame, SDL 
+	Python 2.7, PyGame, SDL 
 	
 Optional:	
-	wxPython
+	wxPython 2.8 or 3.*
 
 Local Installation:
 	unzip package to home directory
@@ -41,16 +41,18 @@ Note:
 	directory.
 
 Dependencies:
-	Python, PyGame, SDL
+	Python 2.7, PyGame, SDL
 	
 Optional:
-	wxGTK-2.8.* and wxPython
+	wxpython 2.8 or wxpython 3.0
 
 Installation Procedure:
 	unzip the package
 	cd into package directory
 	python ./tuxmathscrabble.py
-	
+		or
+	python ./tuxmathscrabble.py -wx
+			
 ==========================================
 Windows:
 
@@ -61,15 +63,17 @@ Note:
 	directory.
 
 Dependencies:
-	Python, PyGame, SDL
+	Python 2.7, PyGame, SDL
 	
 Optional:
-	wxGTK-2.8.* and wxPython
+	wxpython 2.8 or wxpython 3.0
 
 Installation Procedure:
 	unzip the package
 	cd into package directory
 	python ./tuxmathscrabble.py
+		or
+	python ./tuxmathscrabble.py -wx
 
 ==========================================
 Windows XP (older .exe installer):
