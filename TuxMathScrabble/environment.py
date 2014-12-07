@@ -69,7 +69,7 @@ class Environment:
 		#If application hasn't been installed (via setup.py) then try to run from tgz directory:
 		if os.path.exists("/usr/share/games/tuxmathscrabble"):pass
 		else:
-			if os.path.exists(appname) and os.path.exists('mstation.py'):#if yes, then probably want to be running w/o installing.
+			if os.path.exists(appname) and os.path.exists('tms.py'):#if yes, then probably want to be running w/o installing.
 				sitepkgdir='.'
 				fontdir='.'
 				configdir='.'
