@@ -1257,8 +1257,8 @@ class TuxMathScrabble:
 		
 		if not os.path.exists(infname):
 			
-			master_fname=os.path.join(self.env.fontdir,'.mstation_config_master')
-			candidate=os.path.join('/','usr','share','games','multiplicationstation','.mstation_config_master')
+			master_fname=os.path.join(self.env.fontdir,'.tms_config_master')
+			candidate=os.path.join('/','usr','share','games','tuxmathscrabble','.tms_config_master')
 			if os.path.exists(candidate):
 				master_fname=candidate
 			
