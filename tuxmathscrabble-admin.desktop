@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=TuxMathScrabble Admin
+Name[ru]=TuxMathScrabble Админ
+GenericName=Mathematical scrabble like game
+GenericName[de]=Mathematisches Spiel ähnlich Scrabble
+GenericName[ru]=Арифметическая игра Эрудит
+Comment=Fun game to learn math with administration mode enabled
+Comment[ru]=Весёлая игра для изучения математики (режим администратора)
+Exec=tuxmathscrabble -wx
+Icon=tuxmathscrabble
+Terminal=false
+Type=Application
+Categories=Game;BoardGame;
