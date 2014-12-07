@@ -1256,7 +1256,12 @@ class TuxMathScrabble:
 		infname=os.path.join(homedir,'.tms_config')
 		
 		if not os.path.exists(infname):
-			master_fname=os.path.join('.','.tms_config_master')
+			
+			master_fname=os.path.join(self.env.fontdir,'.mstation_config_master')
+			candidate=os.path.join('/','usr','share','games','multiplicationstation','.mstation_config_master')
+			if os.path.exists(candidate):
+				master_fname=candidate
+			
 			if self.env.OS=='win':
 				cmd="copy %s \"%s\""%(master_fname,os.path.join(homedir,'.tms_config'))
 				os.system(cmd)
@@ -1401,7 +1406,7 @@ class TuxMathScrabble:
 			u'Millie and Jordan',
 			u'* And * Kids * Everywhere *',
 			u'',
-			u'TuxMathScrabble Version 0.7.7',
+			u'TuxMathScrabble Version 0.8.0',
 			u'December 6, 2014',
 			u'',
 			u'Author:Charles B. Coss'+u'\xe9',
@@ -1776,7 +1781,7 @@ class TuxMathScrabble:
 			'',
 			'**********************************************************',
 			'*                                                        *',
-			'*   You are using version 0.7.7 from December 6, 2014    *',
+			'*   You are using version 0.8.0 from December 6, 2014    *',
 			'*                                                        *',
 			'*                http://www.asymptopia.org               *',
 			'*                                                        *',

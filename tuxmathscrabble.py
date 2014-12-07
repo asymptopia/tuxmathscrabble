@@ -19,6 +19,7 @@
 ***********************************************************/
 """
 import os,sys,string,time
+sys.path.append('/usr/share/games/tuxmathscrabble/lib')
 from TuxMathScrabble.tms import *
 
 def usage():
