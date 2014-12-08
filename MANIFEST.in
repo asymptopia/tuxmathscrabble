@@ -1,0 +1,17 @@
+include .tms_config_master 
+include README.md
+include README
+include CHANGES
+include INSTALL
+include LICENSE
+include VERSION
+include tuxmathscrable.py
+include TuxMathScrabble-0.8.0.png
+include tms.ico
+include tuxmathscrabble-admin.desktop
+include tuxmathscrabble.desktop
+recursive-include Font *
+recursive-include TuxMathScrabble/Images *
+recursive-include TuxMathScrabble/Sounds *
+recursive-include TuxMathScrabble/Tiles *
+recursive-include TuxMathScrabble/Actors *
