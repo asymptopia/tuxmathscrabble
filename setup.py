@@ -6,18 +6,32 @@
 
     Website         :www.asymptopia.org
 
+    Support         :www.asymptopia.org/forum
+
     Author          :Charles B. Cosse
 
     Email           :ccosse@asymptopia.org
 
-    Copyright       :(C) 2006-2010 Asymptopia Software
+    Copyright       :(C) 2006-2015 Asymptopia Software
 
     License         :GPLv3
 
 ***********************************************************/
 """
 import os,sys
+from setuptools import setup
+
 APPNAME='TuxMathScrabble'
+
+setup(name='tuxmathscrabble',
+	version='0.8.1',
+	description='Encourages kids to construct compound equations and consider multiple,abstract possibilities.',
+	url='http://www.asymptopia.org',
+	author='Charles B. Cosse',
+	author_email='ccosse@asymptopia.org',
+	include_package_data=True,
+	license='GPLV3',
+	packages=[APPNAME],)
 
 for sitepkgdir in sys.path:
 	if sitepkgdir[-13:]=='site-packages':break
@@ -44,15 +58,13 @@ if not os.path.exists('/var/games/TuxMathScrabble'):os.mkdir('/var/games/TuxMath
 
 path='/var/games/TuxMathScrabble'
 
-cmd="cp -r  Font %s"%(path)
-print cmd
+cmd="cp -r  Font README CHANGES VERSION %s"%(path)
 os.system(cmd)
 
 cmd="chmod -R 755 /var/games/%s"%(APPNAME)
-print cmd
 os.system(cmd)
 
-cmd="cp .tms_config_master %s"%(path)
+cmd="cp .tuxmathscrabble_config_master %s"%(path)
 print cmd
 os.system(cmd)
 
@@ -67,20 +79,23 @@ cmd="cp tuxmathscrabble.py /usr/local/bin/tuxmathscrabble"
 print cmd
 os.system(cmd)
 
+cmd="chmod +x /usr/local/bin/%s"%('tuxmathscrabble')
+print cmd
+os.system(cmd)
+
 cmd="chmod -R 755 %s/%s"%(sitepkgdir,APPNAME)
 print cmd
 os.system(cmd)
 
 
 ##########################################################	
-print '**********************************************'
-print '*                                            *'
-print '*           Setup Complete                   *'
-print '*                                            *'
-print '* Run: /usr/local/bin/tuxmathscrabble  -help *'
-print '*                                            *'
-print '*      Checkout more software at:            *'
-print '*      http://www.asymptopia.org             *'
-print '*                                            *'
-print '**********************************************'
-
+print '*********************************************'
+print '*                                           *'
+print '*           Setup Complete                  *'
+print '*                                           *'
+print '*  Run: /usr/local/bin/tuxmathscrabble -help   *'
+print '*                                           *'
+print '*      Checkout more software at:           *'
+print '*      http://www.asymptopia.org            *'
+print '*                                           *'
+print '*********************************************'
