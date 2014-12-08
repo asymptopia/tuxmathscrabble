@@ -1,4 +1,12 @@
 ===========================================
+CHANGES-TuxMathScrabble-0.8.1
+December 8, 2014
+===========================================
+
+Fix fullscreen capability via F6 key, all platforms.
+Especially nice in screensaver mode.
+
+===========================================
 CHANGES-TuxMathScrabble-0.8.0
 December 6, 2014
 ===========================================

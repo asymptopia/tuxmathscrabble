@@ -639,7 +639,7 @@ class TuxMathScrabble:
 				elif e.key==K_F9:self.go_help()
 				elif e.key==K_F10:self.go_credit()
 				elif e.key==K_F11:self.go_screenshot()
-				elif e.key==K_F12:self.go_fullscreen()
+				elif e.key==K_F6:self.go_fullscreen()
 				
 			#################################
 			if e.type == MOUSEBUTTONDOWN:
@@ -1361,12 +1361,12 @@ class TuxMathScrabble:
 			u'F3  Key: Record movie (screenshot ea. frame)           ',
 			u'F4  Key: Screensaver mode                              ',
 			u'F5  Key: Shuffle tiles in place                        ',
+			u'F6  Key: Fullscreen                                    ',
 			u'F7  Key: Throw moved tiles back to tray                ',
 			u'F8  Key: Exchange all tiles and sacrifice turn         ',
 			u'F9  Key: Show help                                     ',
 			u'F10 Key: Show credits                                  ',
 			u'F11 Key: Screenshot to HOME directory                  ',
-			u'F12 Key: Fullscreen (Linux only)                       ',
 			u'                                                       ',
 			u'Scrolling mouse wheel shuffles tiles                   ',
 			u'                                                       ',
@@ -1406,8 +1406,8 @@ class TuxMathScrabble:
 			u'Millie and Jordan',
 			u'* And * Kids * Everywhere *',
 			u'',
-			u'TuxMathScrabble Version 0.8.0',
-			u'December 6, 2014',
+			u'TuxMathScrabble Version 0.8.1',
+			u'December 8, 2014',
 			u'',
 			u'Author:Charles B. Coss'+u'\xe9',
 			u'Contact:ccosse@asymptopia.org', 
@@ -1518,15 +1518,15 @@ class TuxMathScrabble:
 					#self.STOP_RUNNING=1
 					#return
 				
+				elif event.key ==K_F6:
+					self.go_fullscreen()
+
 				elif event.key==K_F9:
 					self.go_help()
 				
 				elif event.key==K_F10:
 					self.go_credit()
 					
-				elif event.key ==K_F12:
-					pygame.display.toggle_fullscreen()
-					self.AMFULLSCREEN*=-1
 					
 				elif event.key==K_F11:
 					try:self.take_screenshot()
@@ -1583,8 +1583,16 @@ class TuxMathScrabble:
 		pygame.image.save(display_surface,oufname)
 
 	def go_fullscreen(self):
-		self.AMFULLSCREEN=pygame.display.toggle_fullscreen()
-		if DEBUG:print 'self.AMFULLSCREEN=',self.AMFULLSCREEN
+		if self.AMFULLSCREEN==True:
+			try:
+				s=pygame.display.set_mode((0,0))
+				self.AMFULLSCREEN=False
+			except Exception,e:print e
+		else:
+			try:
+				s=pygame.display.set_mode((0,0),pygame.FULLSCREEN)
+				self.AMFULLSCREEN=True
+			except Exception,e:print e
 
 	def display_overlay(self,xfont,msg):#msg=[line1,line2,...]
 		wmax=0
@@ -1781,7 +1789,7 @@ class TuxMathScrabble:
 			'',
 			'**********************************************************',
 			'*                                                        *',
-			'*   You are using version 0.8.0 from December 6, 2014    *',
+			'*   You are using version 0.8.1 from December 8, 2014    *',
 			'*                                                        *',
 			'*                http://www.asymptopia.org               *',
 			'*                                                        *',
