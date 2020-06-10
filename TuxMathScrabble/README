@@ -1,4 +1,14 @@
 ===========================================
+CHANGES TuxMathScrabble-0.9.0
+===========================================
+June 10, 2020
+
+Python3
+Developed and tested (lightly) with Macbook Air, Anaconda Python, PyGame 1.9.6,
+and wx from pip.  Run with pythonw for Anaconda.
+
+
+===========================================
 CHANGES-TuxMathScrabble-0.8.1
 December 8, 2014
 ===========================================
@@ -36,9 +46,9 @@ Changes and new additions for this version: Please see the CHANGES file.
 
 Computer Player solver speed: Recently variables were added to the global_config (thus they appear in the admin control panel) which offer the ability to toggle-off some (or all) of the various sets of combinations that get considered when the computer player takes a turn.  This was implemented after the painful delays experienced while playing Level=4 on a 500 MHz windows machine.  Ouch!
 
-Animation Speed: If the animations are running too slowly then enter the admin control panel and reduce the parameter TSLEEP_ANIMATION.  
+Animation Speed: If the animations are running too slowly then enter the admin control panel and reduce the parameter TSLEEP_ANIMATION.
 
-Exiting: The escape key is used to exit the application.  If you are in screensaver mode (Mode=0) then the escape key will completely exit the application.  If you are playing (Mode=1), then the escape key will take you back to Mode=0.  On Windows, when the app exits you will see an error message; just ignore, it's harmless, and is due to a deprecated library in the wxPython toolkit.  
+Exiting: The escape key is used to exit the application.  If you are in screensaver mode (Mode=0) then the escape key will completely exit the application.  If you are playing (Mode=1), then the escape key will take you back to Mode=0.  On Windows, when the app exits you will see an error message; just ignore, it's harmless, and is due to a deprecated library in the wxPython toolkit.
 
 Help Menu: The F9 key shows a help menu of the handful of keyboard options.
 
@@ -57,4 +67,3 @@ If you have questions, suggestions, feature requests, etc, please feel free to c
 Enjoy the software,
 
 Charles B. Cosse (Author)
-

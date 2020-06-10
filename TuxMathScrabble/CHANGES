@@ -1,4 +1,14 @@
 ===========================================
+CHANGES TuxMathScrabble-0.9.0
+===========================================
+June 10, 2020
+
+Python3
+Developed and tested (lightly) with Macbook Air, Anaconda Python, PyGame 1.9.6,
+and wx from pip.  Run with pythonw for Anaconda.
+
+
+===========================================
 CHANGES TuxMathScrabble-0.8.1
 ===========================================
 October 8, 2014
@@ -34,7 +44,7 @@ January 12, 2010
 	then .tms_config_master located at /var/games/TuxMathScrabble/.tms_config_master and copied -> $HOME/.tms_config
 	at user's first run.  Previously ran into permission problems if users try to change settings via admin.
 	Now every user takes their own copy of the config file and saves in their $HOME.
-	
+
 
 ===========================================
 CHANGES TuxMathScrabble-0.7.1
@@ -62,8 +72,8 @@ CHANGES TuxMathScrabble-0.6.4
 ===========================================
 June 20, 2009
 
-1.	In the course of implementing the wx functionality as being "optional", various unforseen problems arose.  After 
-	several iterations things should now be working as originally advertised.  Let's hope! In other words, no new 
+1.	In the course of implementing the wx functionality as being "optional", various unforseen problems arose.  After
+	several iterations things should now be working as originally advertised.  Let's hope! In other words, no new
 	functionality, just making it work as advertised about 2 releases ago.
 
 
@@ -99,7 +109,7 @@ November 26, 2008
 
 1.	Undo admin image sidebar due to convert-to-bitmap problems with wx
 2.	Moved TuxMathScrabble.py -> tuxmathscrabble for Gentoo ebuild
-3.	Made Gentoo ebuild 
+3.	Made Gentoo ebuild
 
 =================================
 CHANGES TuxMathScrabble-0.5.5
@@ -109,7 +119,7 @@ November 9, 2008
 1.	Mouse wheel over tray shuffles tray tiles
 2.	Changed some variables to be shown in admin panel by default: SoundOn,
 3.	Fixed capability to save changes to IMAGE_ADMIN_SIDEBAR
-4.	Reduced-by-consolidation use of color and font variables ... 
+4.	Reduced-by-consolidation use of color and font variables ...
 5.	Went from "wx.lib.flatnotebook" back to "wx.Notebook" for older wx installation compatability.
 6.	Restored ToolTips for all items throughout admin configuration panel.
 7.	Restored fireworks show, same as TuxWordSmith
@@ -134,8 +144,8 @@ CHANGES TuxMathScrabble-0.5.2
 February 20, 2008
 =================================
 
-1. TuxMathScrabble/environment.py modified so Mac 
-users will run from local directory w/o installation, 
+1. TuxMathScrabble/environment.py modified so Mac
+users will run from local directory w/o installation,
 thereby avoiding any and all path issues.
 
 
@@ -168,9 +178,9 @@ December 23, 2007
 
 MAX_REPLACEMENTS_L1-4: This directly affects the
 number of possibilities considered by the computer
-player, and thus how long each computer player takes 
-to move.  Physically, this parameter controls the 
-number of "wildcards" to attempt to incorporate from 
+player, and thus how long each computer player takes
+to move.  Physically, this parameter controls the
+number of "wildcards" to attempt to incorporate from
 the existing entries on the board. So, if the computer
 player is taking too long, reduce this parameter by
 one for the level on which you wish to play (L1-L4).
@@ -180,7 +190,7 @@ single line.
 
 Restored alpha-layer configurability for tiles.
 
-Added call to set_colorkey of highscore surface during 
+Added call to set_colorkey of highscore surface during
 play.
 
 Hiding some parameters (toggling showme=0) to
@@ -194,7 +204,7 @@ December 20, 2007
 =================================
 
 Migrated from deprecated wxPython.wx package to wx.*
-packages. This eliminates old/harmless crash-on-exit 
+packages. This eliminates old/harmless crash-on-exit
 under MS-Windows.
 
 
@@ -206,7 +216,7 @@ effect was to make the computer player to be a more
 difficult opponent than intended on lower skill levels.
 The subsequent references have now been modified like
 MAX_REPLACEMENTS[self.LEVEL-1], which was the original
-intent. 
+intent.
 
 Added "(Linux only)" to F9-line in help overlay.
 
@@ -220,7 +230,7 @@ Sound functionality restored.
 CHANGES TuxMathScrabble-0.5.0-rc3
 December 19, 2007
 =================================
-Removed rotozoom operation on animated tiles and replaced with 
+Removed rotozoom operation on animated tiles and replaced with
 fixed-size images, still rotozoomed, but with scale-factor=1, for
 starters.
 
@@ -232,14 +242,14 @@ loop (top of tms.py file). No change in functionality.
 
 Changed call in CftCtrl.py so calls self.reload_configs() rather
 than previous self.reload(cfgname), which was crashing under certain
-circumstances. 
+circumstances.
 
 =================================
 CHANGES TuxMathScrabble-0.5.0-rc2
 December 15, 2007
 =================================
 
-Fixed transparency of score widget when background image 
+Fixed transparency of score widget when background image
 is configured to be used.
 
 Added who's turn indicators.
@@ -251,7 +261,7 @@ Restored all character animations.
 "None" is now a character option.
 
 Using tile-color-coded score strings instead of score-string
-widget in rc1.  Also using some better font settings from 
+widget in rc1.  Also using some better font settings from
 current development version of TuxWordSmith. See the page:
 http://www.asymptopia.org/staticpages/index.php?page=tws-greek-english
 
@@ -260,9 +270,9 @@ checked during tms.update() to determine if should queue waiting
 maneuver. (looks/gestures/antics)
 
 Bad animated tile graphics replaced using images from preliminary
-3D blender modeling experiments. 
+3D blender modeling experiments.
 
-Button surfaces created dynamically -- this was last type surf 
+Button surfaces created dynamically -- this was last type surf
 remaining to be dealt with on-the-fly.
 
 TuxMathScrabble splash screen while loading global_config-dependent
@@ -275,7 +285,7 @@ December 13, 2007
 =================================
 
 
-Self-contained, no longer built upon libasymptopia. 
+Self-contained, no longer built upon libasymptopia.
 Now only 571k!
 
 Dynamic tile creation, dynamic tile placement of
@@ -288,15 +298,15 @@ submission spot.
 players mode is new.
 
 Keyboard HotKeys:
-F1  Key: Cycle through game levels  		   
-F4  Key: Screensaver mode					   
-F5  Key: Shuffle tiles in place 			   
-F8  Key: Exchange all tiles and sacrifice turn 
-F9  Key: Show help  						   
-F10 Key: Show credits						   
-F11 Key: Screenshot to HOME directory		   
-F12 Key: Fullscreen 						   
-ESC Key: Quit 
+F1  Key: Cycle through game levels
+F4  Key: Screensaver mode
+F5  Key: Shuffle tiles in place
+F8  Key: Exchange all tiles and sacrifice turn
+F9  Key: Show help
+F10 Key: Show credits
+F11 Key: Screenshot to HOME directory
+F12 Key: Fullscreen
+ESC Key: Quit
 
 New hat for player[1] character.
 
@@ -306,21 +316,21 @@ No accounts/logins. Anyone can tweak the settings. Defaults
 are easily recovered by clicking the 'Default' button for
 each configurable parameter in the admin control panel.
 
-Dynamic/realtime application of changes made through admin 
+Dynamic/realtime application of changes made through admin
 control panel.
 
 Fixed bgImage loading function.
 
-MacFix?: Interchanged lines 26/27 in environment.py 
-so search for 'darwin', the OS-X machine name, first. 
-(previous env search for 'win' was finding 'darwin' on 
+MacFix?: Interchanged lines 26/27 in environment.py
+so search for 'darwin', the OS-X machine name, first.
+(previous env search for 'win' was finding 'darwin' on
 macs, thereby precluding correct install on macs).
 NEED: Feedback from a Mac user please.
 
 And lots more.
 
-Much more has been changed, but these are the most 
-noticable to the user. 
+Much more has been changed, but these are the most
+noticable to the user.
 
 
 ===========================
@@ -329,13 +339,13 @@ CHANGES TuxMathScrabble-0.4.5
 Fixing small mess I made by changing version of underlying lib for
 0.5.1 TuxWordSmith and leaving numbering the same (0.1.3) for TWS
 and TMS, both, which breaks the first app installed, if you have
-both TWS and TMS installed, since the 2nd install overwrites with 
+both TWS and TMS installed, since the 2nd install overwrites with
 a lib that's numbered the same but different in content.  whoops.
-So this TMS-0.4.5 uses the newly modified lib 0.1.3, and even 
-though it's the same number as the lib in TMS-0.4.4, it's of 
+So this TMS-0.4.5 uses the newly modified lib 0.1.3, and even
+though it's the same number as the lib in TMS-0.4.4, it's of
 different content.  It would be better to make lib 0.1.4, but too
 lazy to go through all those files and change that import.  So,
-just install new version of TMS. 
+just install new version of TMS.
 
 This does not affect the windows versions since they are self-
 contained and refer only to their own local subdirectories.
@@ -365,7 +375,7 @@ Added "About" button to login group.
 CHANGES TuxMathScrabble-4.1
 ===========================
 -Admin GUI Widgets w/Hide Option
--asymptopia base template 
+-asymptopia base template
 -eliminated EduApp base package
 
 
@@ -380,4 +390,3 @@ CHANGES TuxMathScrabble-4.0
 -New Fireworks
 -Sound support
 -Other miscellaneous
-
