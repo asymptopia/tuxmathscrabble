@@ -5,11 +5,11 @@
 
     Website         :www.asymptopia.org
 
-    Author          :Charles B. Cosse
+    Author          :Charlie Cosse
 
-    Email           :ccosse@asymptopia.org
+    Email           :ccosse@gmail.com
 
-    Copyright       :(C) 2006-2009 Asymptopia Software
+    Copyright       :(C) 1999-2020 Asymptopia Software
 
     License         :GPLv3
 
@@ -24,28 +24,28 @@ DEBUG=0
 
 class TMS_Validator:
 	"""Validator has game model.
-	
+
 	"""
 	def __init__(self,board,game):
 		self.board=board
 		self.game=game
-		
+
 	def validate(self,submission):
 		if len(submission)==0:return(0)
 		board=self.board
-		if DEBUG:print submission
+		if DEBUG:print(submission)
 		#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 		#need to find head,row,col,len and set spot variables accordingly:
-		
+
 		MinM=board.M;MinN=board.N
-		
+
 		#this handles row/col both:(we want smallest M,N)
 		for spot in submission:
 			if spot.M<=MinM and spot.N<=MinN:
 				MinM=spot.M
 				MinN=spot.N
 		#print 'preliminary: MinM,MinN=',MinM,MinN
-		
+
 		#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 		#Check if anything to LHS or Above
 		try_above=1
@@ -64,19 +64,19 @@ class TMS_Validator:
 				MinM=MinM-1
 			else:break
 		#print 'final MinM,MinN=',MinM,MinN
-			
+
 		#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 		#Get MaxM,N of submission (so can check RHS and Below):
-		
+
 		MaxM=0;MaxN=0
-	
+
 		#this handles row/col both:(we want largest M,N)
 		for spot in submission:
 			if spot.M>=MaxM and spot.N>=MaxN:
 				MaxM=spot.M
 				MaxN=spot.N
 		#print 'preliminary: MaxM,MaxN=',MaxM,MaxN
-		
+
 		#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 		#*************NOTE: MaxM,N possible=board.M-1,N-1******************
 		#Check if anything to RHS or Below
@@ -98,7 +98,7 @@ class TMS_Validator:
 				MaxM=MaxM+1
 			else:break
 		#print 'final MaxM,MaxN=',MaxM,MaxN
-		
+
 		#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 		#can put exprtype determination here, no?
 		if MaxM-MinM>0 and MaxN-MinN>0:return(0)#can't be both types
@@ -111,7 +111,7 @@ class TMS_Validator:
 			#print 'THIS SHOULD NOT HAPPEN(and this else clause should be able to be removed)!!!!!!!!!!!'
 			return(0)
 		#print 'exprtype=',exprtype
-		
+
 		#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 		#Check continuous between Min/Max
 		if exprtype=='row':
@@ -126,7 +126,7 @@ class TMS_Validator:
 				if this_idx_okay==0:
 					#print 'ROWGAPROWGAPROWGAPROWGAPROWGAPROWGAPROWGAPROWGAP: ->',idx
 					return(0)
-				
+
 		elif exprtype=='col':
 			#print 'col col col col col col col'
 			for idx in range(MinM,MaxM+1):
@@ -139,18 +139,18 @@ class TMS_Validator:
 				if this_idx_okay==0:
 					#print 'COLGAPCOLGAPCOLGAPCOLGAPCOLGAPCOLGAPCOLGAPCOLGAP: ->',idx
 					return(0)
-			
+
 		"""
 		At this point, if this_idx_okay==0 then we can throw submission back -> tray because you can't
 		do two separate equations in a turn. One point that we might ought to have handled already: What
-		if the submission involved a row and a column? (Can't think of example where possible, but not 
+		if the submission involved a row and a column? (Can't think of example where possible, but not
 		sure its not) Hence above "if not valid, return(0)". Okay, i guess the gut-feelings i'm having
 		that such cases exist are if we enter something into a corner (which would necessarily be an
 		equal sign!), but would then be working 2 equations at once -- what was decided not to support,
 		at least at first.
 		"""
-		
-		
+
+
 		#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 		#Build the expression -> string
 		expr=''
@@ -175,25 +175,25 @@ class TMS_Validator:
 							#print 'requesting idx,MinN=',idx,MinN
 							expr=expr+spot.guest.str_val
 							#continue
-		
-		
+
+
 		#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
-		
+
 		#perform some basic sanity checks:
-		
+
 		if expr.count('=')==0:
-			if DEBUG:print 'bailing because no = sign found'
+			if DEBUG:print('bailing because no = sign found')
 			return(0)
-		
+
 		#revised implementation to handle 0-99:
 		length=len(expr)
 		for twodigitnum in range(10,100):
-			length-=expr.count(unicode(twodigitnum))
+			length-=expr.count(str(twodigitnum))
 		if math.fmod(length,2)==0:
-			if DEBUG:print 'my new function says NO'
+			if DEBUG:print('my new function says NO')
 			return(0)
-		
-		
+
+
 		#alternating ops, no first/last opps
 		#commenting-out this section: still fails to evaluate, so okay.
 		"""
@@ -213,22 +213,22 @@ class TMS_Validator:
 			if should_be_op==0:should_be_op=1
 			else:should_be_op=0
 		"""
-		
+
 		expr=expr.replace('=','==')#last step before evaluating!
-		
+
 		#evaluate it:
 		#print 'EXPRESSION=',expr
 		try:rval=eval(expr)
 		except:return(0)
 		if rval==0:return(0)
-		
+
 		#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 		head_spot=None
 		for spot in submission:#was head in submission?
 			if spot.M==MinM and spot.N==MinN:head_spot=spot
 		if not head_spot:#then head must have been on board.
 			head_spot=board.get_spotMN(MinM,MinN)
-				
+
 		head_spot.AMHEAD=1
 		if exprtype=='row':
 			head_spot.AMROWEXPR=1
@@ -236,27 +236,27 @@ class TMS_Validator:
 		if exprtype=='col':
 			head_spot.AMCOLEXPR=1
 			head_spot.COLEXPRLENGTH=MaxM-MinM+1
-		
+
 		#+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
 		#did this submission affect any HEADS in it's range? Check-and-update!
-		
+
 		addition_used=0
 		subtraction_used=0
 		multiplication_used=0
 		division_used=0
-				
+
 		if exprtype=='row':
 			multiplier=1
 			score=0
-			
+
 			#This gives points for newly submitted tiles:
 			for sidx in range(len(submission)):
 				try:
 					score+=submission[sidx].guest.ptval
-					
-				except Exception,e:
-					if DEBUG:print e
-			
+
+				except:
+					if DEBUG:print(sys.exc_info())
+
 			#This gives points for pieces already on board:
 			for nidx in range(MinN,MaxN+1):
 				spot2check=board.get_spotMN(MinM,nidx)
@@ -264,41 +264,41 @@ class TMS_Validator:
 					ptval=spot2check.guest.ptval
 					score+=ptval
 					self.game.num_replacements+=1
-					
-				except Exception,e:
-					if DEBUG:print e
-				
-			
-			
+
+				except:
+					if DEBUG:print(sys.exc_info())
+
+
+
 			self.game.players[self.game.player_idx].score+=score
 			self.game.last_points=score
-			
+
 			for n in range(MinN+1,MaxN+1):#don't overwrite new head (hence * MinN+1 *)
 				#only bother if on board
 				if board.check4guest(MinM,n):
 					spot2check=board.get_spotMN(MinM,n)
-					
+
 					if spot2check.AMHEAD and spot2check.AMROWEXPR:
 						spot2check.AMROWEXPR=0
 						spot2check.ROWEXPRLENGTH=0
 						#if also COLHEAD then don't unset AMHEAD, else do!
 						if spot2check.AMCOLEXPR:pass
 						else:spot2check.AMHEAD=0
-			
-						
+
+
 		if exprtype=='col':
 			multiplier=1
 			score=0
-			
+
 			#This gives points for newly submitted tiles:
 			for sidx in range(len(submission)):
 				try:
 					score+=submission[sidx].guest.ptval
 
-				except Exception,e:
-					if DEBUG:print e
-					
-			
+				except:
+					if DEBUG:print(sys.exc_info())
+
+
 			#This gives points for pieces already on board:
 			for midx in range(MinM,MaxM+1):
 				spot2check=board.get_spotMN(midx,MinN)
@@ -307,23 +307,23 @@ class TMS_Validator:
 					score+=ptval
 					self.game.num_replacements+=1
 
-				except Exception,e:
-					if DEBUG:print e
-			
-					
+				except:
+					if DEBUG:print(sys.exc_info())
+
+
 			self.game.players[self.game.player_idx].score+=score
 			self.game.last_points=score
-			
+
 			for m in range(MinM+1,MaxM+1):#don't overwrite new head (hence * MinN+1 *)
 				#only bother if on board
 				if board.check4guest(m,MinN):
 					spot2check=board.get_spotMN(m,MinN)
-					
+
 					if spot2check.AMHEAD and spot2check.AMCOLEXPR:
 						spot2check.AMCOLEXPR=0
 						spot2check.COLEXPRLENGTH=0
 						#if also ROWHEAD then don't unset AMHEAD, else do!
 						if spot2check.AMROWEXPR:pass
 						else:spot2check.AMHEAD=0
-		
+
 		return(1)

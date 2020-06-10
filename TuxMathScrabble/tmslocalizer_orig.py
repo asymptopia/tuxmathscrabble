@@ -5,11 +5,11 @@
 
     Website         :www.asymptopia.org
 
-    Author          :Charles B. Cosse
+    Author          :Charlie Cosse
 
-    Email           :ccosse@asymptopia.org
+    Email           :ccosse@gmail.com
 
-    Copyright       :(C) 2006-2009 Asymptopia Software
+    Copyright       :(C) 1999-2020 Asymptopia Software
 
     License         :GPLv3
 
@@ -34,24 +34,24 @@ class TMS_Localizer_ORIG:
 	def update_board_map(self):
 		#returns a 2D array of str_vals
 		self.board_map,self.counts=self.board.get_map()
-	
+
 	def localize(self,submission):
-		
+
 		#check if proposed wc values on board:
 		wc_list=[]
 		for idx in range(len(submission)):
 			if submission[idx][:3]=='WC:':
 				val=submission[idx][3:]
-				try:val=`float(val)`
+				try:val=str(float(val))
 				except:pass
 				if self.counts[val]['count']==0:
 					del wc_list
 					return None
 				val=submission[idx][3:]
 				wc_list.append((val,idx))
-		
-		
-		#check if board can satisfy wc_values' distance and neighbor requirements: (and under what conditions, i.e. row/col?) 
+
+
+		#check if board can satisfy wc_values' distance and neighbor requirements: (and under what conditions, i.e. row/col?)
 		ok_row=0
 		ok_col=0
 		if self.game.board.num_commited==0:
@@ -59,7 +59,7 @@ class TMS_Localizer_ORIG:
 			ok_col=1
 		if len(wc_list)<2:
 			ok_row=1
-			ok_col=1	
+			ok_col=1
 		for idx in range(len(wc_list)-1):
 		#  try:
 			dist=wc_list[idx+1][1]-wc_list[idx][1]
@@ -73,7 +73,7 @@ class TMS_Localizer_ORIG:
 		#  except:print self.counts[`float(wc_list[idx][0])`]
 		if ok_row or ok_col:pass
 		else:return None
-		
+
 		#flip coin to decide whether to try row or col first:
 		rand=int(random()*2)
 		if rand==0:
@@ -81,32 +81,32 @@ class TMS_Localizer_ORIG:
 			if rlist:return(rlist)
 			rlist=self.try_col(submission)
 			if rlist:return(rlist)
-		else:	
+		else:
 			rlist=self.try_col(submission)
 			if rlist:return(rlist)
 			rlist=self.try_row(submission)
 			if rlist:return(rlist)
 		return(None)
-		
-	def try_row(self,submission):	
+
+	def try_row(self,submission):
 		#print 'try_row'
 		board_map=self.board_map
 		M=self.M
 		N=self.N
 		if len(submission)==0:return(None)
-		
+
 		slim=len(submission)
 		nlim=N-len(submission)+1
-		
+
 		MMIN=0
 		if self.board.num_commited==0:MMIN=M/2
-		
+
 		NMIN=0
 		if self.board.num_commited==0:NMIN=N/2-len(submission)/2
 		if NMIN<0:NMIN=0
-		
-		for m in range(MMIN,M):
-			for n in range(NMIN,nlim):
+
+		for m in range(int(MMIN),M):
+			for n in range(int(NMIN),nlim):
 				ok=1
 				for sidx in range(slim):
 					if submission[sidx][:3]=='WC:':
@@ -125,37 +125,37 @@ class TMS_Localizer_ORIG:
 						#if tripple[0][:3]=='WC:':dummy=0  <-remove these after check;keep "WC:" in the value
 						#else:rlist.append(tripple)
 						rlist.append(tripple)
-					
+
 					rval=self.check_neighborhood(rlist)
 					#print 'check_neighborhood returned:',rval
-					
+
 					#now remove "WC:"s
 					for idx in range(slim-1,-1,-1):
 						if rlist[idx][0][:3]=='WC:':x=rlist.pop(idx);del x
-					
+
 					if rval==1:return(rlist)
-				
+
 		return(None)
-		
-	def try_col(self,submission):	
+
+	def try_col(self,submission):
 		#print 'try_col'
 		board_map=self.board_map
 		M=self.M
 		N=self.N
 		if len(submission)==0:return(None)
-		
+
 		slim=len(submission)
 		mlim=M-len(submission)+1
 
 		MMIN=0
 		if self.board.num_commited==0:MMIN=M/2-len(submission)/2
 		if MMIN<0:MMIN=0
-		
+
 		NMIN=0
 		if self.board.num_commited==0:NMIN=N/2
 
-		for n in range(NMIN,N):
-			for m in range(MMIN,mlim):
+		for n in range(int(NMIN),N):
+			for m in range(int(MMIN),mlim):
 				ok=1
 				for sidx in range(slim):
 					if submission[sidx][:3]=='WC:':
@@ -167,7 +167,7 @@ class TMS_Localizer_ORIG:
 					else:
 						#print 'COL: setting->0 b/c board ',m+sidx,n,' !=\'\' ',board_map[m+sidx][n],submission[sidx][:3]
 						ok=0;
-				
+
 				if ok==1:#head @(m,n)
 					rlist=[]
 					for idx in range(slim):
@@ -178,15 +178,15 @@ class TMS_Localizer_ORIG:
 
 					rval=self.check_neighborhood(rlist)
 					#print 'check_neighborhood returned:',rval
-					
+
 					#now remove "WC:"s
 					for idx in range(slim-1,-1,-1):
 						if rlist[idx][0][:3]=='WC:':x=rlist.pop(idx);del x
-					
+
 					if rval==1:return(rlist)
-					
+
 		return(None)
-	
+
 	#_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
 	#CHECK NEIGHBORHOOD
 	#NOTE: still not chaining adjacent eqns...might leave off for now.
@@ -195,7 +195,7 @@ class TMS_Localizer_ORIG:
 		board_map=self.board_map
 		M=self.M
 		N=self.N
-		
+
 		ok=1
 		slen=len(rlist)
 		head=(rlist[0][1],rlist[0][2])
@@ -206,7 +206,7 @@ class TMS_Localizer_ORIG:
 		else:
 			iscol=0
 			row=rlist[0][1]
-		
+
 		if iscol:
 			#check above:
 			if head[0]==0:pass
@@ -230,7 +230,7 @@ class TMS_Localizer_ORIG:
 				for qty in rlist:
 					if qty[0][:3]=='WC:':pass
 					elif board_map[qty[1]][col+1]!='':ok=-4;return(ok)
-			
+
 		else:#submission is a row
 			#check left:
 			if head[1]==0:pass
